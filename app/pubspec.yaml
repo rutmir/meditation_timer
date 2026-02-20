@@ -1,0 +1,46 @@
+name: meditimer
+description: 'Application to help with time control for newbie in meditation'
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 4.0.4+404
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # configured in the l10n.yaml
+    sdk: flutter
+  just_audio: ^0.9.46
+  keep_screen_on: ^4.0.0
+  synchronized: ^3.3.1
+  flutter_secure_storage: ^10.0.0-beta.4
+  intl: any
+  get_it: ^8.0.3
+  provider: ^6.1.5+1
+  permission_handler: ^12.0.1
+  logger: ^2.6.1
+  http: ^1.5.0
+  cronet_http: ^1.7.0
+  cupertino_http: ^2.1.0
+  connectivity_plus: ^6.1.5
+  package_info_plus: ^8.3.1
+  async: ^2.11.0
+  uuid: ^4.5.1
+  flutter_dotenv: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0 # activated in the `analysis_options.yaml`
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
+    - assets/session_sound.mp3
+    - assets/minor_sound.mp3
+    - assets/round_sound.mp3
+    - assets/metronome_sound.mp3
+  generate: true

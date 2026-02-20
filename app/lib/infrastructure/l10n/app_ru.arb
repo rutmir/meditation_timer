@@ -1,0 +1,300 @@
+{
+    "@@locale": "ru",
+
+    "app_name": "Таймер Медитации",
+    "@app_name": {},
+
+    "action_start": "СТАРТ",
+    "@action_start": {},
+
+    "action_stop": "СТОП",
+    "@action_stop": {},
+
+    "action_pause": "ПАУЗА",
+    "@action_pause": {},
+
+    "action_continue": "ПРОДОЛЖИТЬ",
+    "@action_continue": {},
+
+    "action_stop_tooltip": "стоп таймер",
+    "@action_stop_tooltip": {},
+
+    "action_back": "Назад",
+    "@action_back": {},
+
+    "lb_minute_short": "мин",
+    "@lb_minute_short": {},
+
+    "lb_meditation": "Медитация",
+    "@lb_meditation": {},
+
+    "lb_pranayama": "Пранаяма",
+    "@lb_pranayama": {},
+
+    "lb_med_settings": "Медитация",
+    "@lb_med_settings": {},
+
+    "lb_med_session_duration": "Продолжительность медитации",
+    "@lb_med_session_duration": {},
+
+    "lb_med_use_session_gong": "Использовать гонг в начале и конце сессии",
+    "@lb_med_use_session_gong": {},
+
+    "lb_med_session_gong_volume": "Громкость начального гонга",
+    "@lb_med_session_gong_volume": {},
+
+    "lb_med_use_round_gong": "Использовать гонг раунда",
+    "@lb_med_use_round_gong": {},
+
+    "lb_med_round_duration": "Продолжительность раунда",
+    "@lb_med_round_duration": {},
+
+    "lb_med_round_gong_volume": "Громкость гонга раунда",
+    "@lb_med_round_gong_volume": {},
+
+    "lb_med_use_minor_gong": "Использовать малый гонг",
+    "@lb_med_use_minor_gong": {},
+
+    "lb_med_minor_duration": "Продолжительность малого цикла",
+    "@lb_med_minor_duration": {},
+
+    "lb_med_minor_gong_volume": "Громкость малого гонга",
+    "@lb_med_minor_gong_volume": {},
+
+    "lb_pra_settings": "Пранаяма",
+    "@lb_pra_settings": {},
+
+    "lb_pra_start_round": "Выполнить подготовку дыхания",
+    "@lb_pra_start_round": {},
+
+    "lb_pra_set_duration": "Продолжительность раунда",
+    "@lb_pra_set_duration": {},
+
+    "lb_pra_use_metronome": "Использовать метроном (1 секунда)",
+    "@lb_pra_use_metronome": {},
+
+    "lb_pra_metronome_volume": "Громкость метронома",
+    "@lb_pra_metronome_volume": {},
+
+    "lb_app_settings": "Настройки",
+    "@lb_app_settings": {},
+
+    "lb_app_use_silent_mode": "Использовать режим тишины при старте",
+    "@lb_app_use_silent_mode": {},
+
+    "lb_app_color_scheme": "Цветовая схема",
+    "@lb_app_color_scheme": {},
+
+    "lb_app_language": "Язык",
+    "@lb_app_language": {},
+
+    "lb_language_system_default": "По умолчанию",
+    "@lb_language_system_default": {},
+
+    "permission_msg_title": "Не беспокоить",
+    "@permission_msg_title": {},
+
+    "permission_msg_1": "Приложение может автоматически отключать звук телефона во время медитации.",
+    "@permission_msg_1": {},
+
+    "permission_msg_2": "Это предотвратит отвлекающие звонки и уведомления, чтобы вы могли сосредоточиться на практике.",
+    "@permission_msg_2": {},
+
+    "permission_msg_3": "Вы можете изменить это в любое время в настройках приложения.",
+    "@permission_msg_3": {},
+
+    "permission_msg_reject": "Не сейчас",
+    "@permission_msg_reject": {},
+
+    "permission_msg_accept": "Разрешить",
+    "@permission_msg_accept": {},
+
+    "permission_msg_dont_ask": "Больше не спрашивать",
+    "@permission_msg_dont_ask": {},
+
+    "permission_denied_msg": "Разрешение на тихий режим не предоставлено. Вы можете включить его позже в настройках.",
+    "@permission_denied_msg": {},
+
+    "permission_permanently_denied_msg": "Разрешение на тихий режим отклонено. Пожалуйста, включите его в настройках устройства.",
+    "@permission_permanently_denied_msg": {},
+
+    "permission_open_settings": "Настройки",
+    "@permission_open_settings": {},
+
+    "error_no_internet": "Отсутствует подключение к интернету. Проверьте настройки и попробуйте снова.",
+    "@error_no_internet": {},
+
+    "error_app_version": "Сервис вернул ошибку. Убедитесь, что вы используете актуальную версию приложения и попробуйте снова.",
+    "@error_app_version": {},
+
+    "error_unknown": "Неизвестная ошибка.",
+    "@error_unknown": {},
+
+    "lb_miditation_from_ai": "Медитация от ИИ",
+    "@lb_miditation_from_ai": {},
+
+    "lb_created_by_ai": "Создано ИИ",
+    "@lb_created_by_ai": {},
+
+    "created_by_ai_msg": "Все представленные здесь управляемые медитации было созданы и озвучены искусственным интеллектом. ИИ сам определяет тему и содержание медитации, каждый день ИИ предлагает разные варианты.\nПрежде чем загрузить медитацию вы можете просмотреть её, загрузив сначала только текст медитации.\nКак ИИ понимает суть и цели медитации? Мне было интересно взглянуть в это зеркало.",
+    "@created_by_ai_msg": {},
+
+    "lb_introduction": "Вступление",
+    "@lb_introduction": {},
+
+    "lb_conclusion": "Завершение",
+    "@lb_conclusion": {},
+
+    "msg_session_active_locked": "Сессия запущена: некоторые настройки заблокированы.",
+    "@msg_session_active_locked": {},
+
+    "help_pra_title": "О пранаяме",
+    "@help_pra_title": {},
+
+    "help_pra_content": "Пранаяма — это йогическая практика контроля дыхания. В этом приложении она используется как подготовительный этап перед основной медитацией, чтобы успокоить ум и сосредоточиться.",
+    "@help_pra_content": {},
+
+    "help_silence_title": "О режиме тишины",
+    "@help_silence_title": {},
+
+    "help_silence_content": "Если эта функция включена, приложение будет автоматически включать режим «Не беспокоить» на вашем устройстве во время сеанса, чтобы предотвратить прерывания. Режим будет восстановлен после завершения сеанса.",
+    "@help_silence_content": {},
+
+    "lb_pranayama_desc": "Дыхательные упражнения для подготовки к медитации",
+    "@lb_pranayama_desc": {},
+
+    "lb_session_gong_desc": "Звучит в начале и конце медитации",
+    "@lb_session_gong_desc": {},
+
+    "lb_round_gong_desc": "Звучит через регулярные интервалы во время медитации",
+    "@lb_round_gong_desc": {},
+
+    "lb_minor_gong_desc": "Тихие напоминания между интервалами раунда",
+    "@lb_minor_gong_desc": {},
+
+    "lb_metronome_desc": "Ритмичный звук для контроля дыхания",
+    "@lb_metronome_desc": {},
+
+    "lb_silent_mode_desc": "Отключить звуки устройства во время медитации",
+    "@lb_silent_mode_desc": {},
+
+    "lb_reset_defaults": "Сбросить настройки",
+    "@lb_reset_defaults": {},
+
+    "lb_reset_confirm_title": "Сбросить настройки?",
+    "@lb_reset_confirm_title": {},
+
+    "lb_reset_confirm_message": "Все настройки будут восстановлены до исходных значений.",
+    "@lb_reset_confirm_message": {},
+
+    "lb_interval_example": "Для {duration} мин сессии: на {intervals}",
+    "@lb_interval_example": {
+        "placeholders": {
+            "duration": {"type": "int"},
+            "intervals": {"type": "String"}
+        }
+    },
+
+    "lb_no_meditations_available": "Пока нет доступных медитаций",
+    "@lb_no_meditations_available": {},
+
+    "lb_no_meditations_subtitle": "Новые медитации от ИИ генерируются ежедневно",
+    "@lb_no_meditations_subtitle": {},
+
+    "lb_pull_to_refresh": "Потяните для обновления",
+    "@lb_pull_to_refresh": {},
+
+    "lb_scheduling_mode": "Режим расписания звуков",
+    "@lb_scheduling_mode": {},
+
+    "lb_mode_interval": "Интервал",
+    "@lb_mode_interval": {},
+
+    "lb_mode_advanced": "Расширенный",
+    "@lb_mode_advanced": {},
+
+    "lb_advanced_schedule": "Пользовательское расписание",
+    "@lb_advanced_schedule": {},
+
+    "lb_advanced_schedule_desc": "Установите звуки в определённое время",
+    "@lb_advanced_schedule_desc": {},
+
+    "lb_add_sound_event": "Добавить звук",
+    "@lb_add_sound_event": {},
+
+    "lb_edit_event": "Редактировать",
+    "@lb_edit_event": {},
+
+    "lb_delete_event": "Удалить",
+    "@lb_delete_event": {},
+
+    "lb_event_time": "Время",
+    "@lb_event_time": {},
+
+    "lb_event_sound_type": "Тип звука",
+    "@lb_event_sound_type": {},
+
+    "lb_event_volume": "Громкость",
+    "@lb_event_volume": {},
+
+    "lb_save_schedule": "Сохранить расписание",
+    "@lb_save_schedule": {},
+
+    "lb_load_schedule": "Загрузить расписание",
+    "@lb_load_schedule": {},
+
+    "lb_schedule_name": "Название расписания",
+    "@lb_schedule_name": {},
+
+    "lb_no_events_scheduled": "Нет запланированных звуков",
+    "@lb_no_events_scheduled": {},
+
+    "lb_no_events_scheduled_desc": "Нажмите + чтобы добавить звуки",
+    "@lb_no_events_scheduled_desc": {},
+
+    "lb_saved_schedules": "Сохранённые расписания",
+    "@lb_saved_schedules": {},
+
+    "lb_no_saved_schedules": "Нет сохранённых расписаний",
+    "@lb_no_saved_schedules": {},
+
+    "lb_schedule_preview": "Предпросмотр расписания",
+    "@lb_schedule_preview": {},
+
+    "lb_sound_session": "Сессия",
+    "@lb_sound_session": {},
+
+    "lb_sound_round": "Раунд",
+    "@lb_sound_round": {},
+
+    "lb_sound_minor": "Малый",
+    "@lb_sound_minor": {},
+
+    "msg_time_exceeds_duration": "Время не может превышать продолжительность сессии",
+    "@msg_time_exceeds_duration": {},
+
+    "msg_schedule_saved": "Расписание сохранено",
+    "@msg_schedule_saved": {},
+
+    "msg_schedule_loaded": "Расписание загружено",
+    "@msg_schedule_loaded": {},
+
+    "msg_events_filtered": "{count} событий удалено (превышена продолжительность)",
+    "@msg_events_filtered": {
+        "placeholders": {
+            "count": {"type": "int"}
+        }
+    },
+
+    "lb_delete_schedule": "Удалить расписание",
+    "@lb_delete_schedule": {},
+
+    "msg_confirm_delete_schedule": "Вы уверены, что хотите удалить это расписание?",
+    "@msg_confirm_delete_schedule": {},
+
+    "lb_event_repeat_count": "Повторить",
+    "@lb_event_repeat_count": {},
+
+    "msg_minute_already_used": "На эту минуту уже назначен звук",
+    "@msg_minute_already_used": {}
+}

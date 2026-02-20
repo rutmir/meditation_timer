@@ -1,0 +1,20 @@
+[package]
+name = "meditimer-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio =  { version = "1.45.1", features = ["full"] }
+axum = "0.8.4"
+tower = "0.5.2"
+tower-http = { version = "0.6.6", features = ["trace"] }
+tracing-subscriber = "0.3.19"
+meditimer-core ={ path = "../../../", features = ["api"] }
+
+[dev-dependencies]
+log = "0.4.27"
+http-body-util = "0.1.3"
+hyper-util = { version = "0.1.13", features = ["client", "http1", "client-legacy"] }
+mime = "0.3.17"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.140"

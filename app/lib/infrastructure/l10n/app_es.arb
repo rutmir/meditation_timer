@@ -1,0 +1,300 @@
+{
+    "@@locale": "es",
+
+    "app_name": "Temporizador de Meditación",
+    "@app_name": {},
+
+    "action_start": "COMENZAR",
+    "@action_start": {},
+
+    "action_stop": "DETENER",
+    "@action_stop": {},
+
+    "action_pause": "PAUSA",
+    "@action_pause": {},
+
+    "action_continue": "CONTINUAR",
+    "@action_continue": {},
+
+    "action_stop_tooltip": "detener el temporizador",
+    "@action_stop_tooltip": {},
+
+    "action_back": "Atrás",
+    "@action_back": {},
+
+    "lb_minute_short": "min",
+    "@lb_minute_short": {},
+
+    "lb_meditation": "Meditación",
+    "@lb_meditation": {},
+
+    "lb_pranayama": "Prāṇāyāma",
+    "@lb_pranayama": {},
+
+    "lb_med_settings": "Meditación",
+    "@lb_med_settings": {},
+
+    "lb_med_session_duration": "Duración de la meditación",
+    "@lb_med_session_duration": {},
+
+    "lb_med_use_session_gong": "Usa un gong al principio y al final",
+    "@lb_med_use_session_gong": {},
+
+    "lb_med_session_gong_volume": "Volumen del gong inicial",
+    "@lb_med_session_gong_volume": {},
+
+    "lb_med_use_round_gong": "Usa el gong de la ronda",
+    "@lb_med_use_round_gong": {},
+
+    "lb_med_round_duration": "Duración de la ronda",
+    "@lb_med_round_duration": {},
+
+    "lb_med_round_gong_volume": "Volumen el gong de la ronda",
+    "@lb_med_round_gong_volume": {},
+
+    "lb_med_use_minor_gong": "Usa gong menor",
+    "@lb_med_use_minor_gong": {},
+
+    "lb_med_minor_duration": "Duración del ciclo menor",
+    "@lb_med_minor_duration": {},
+
+    "lb_med_minor_gong_volume": "Volumen de gong menor",
+    "@lb_med_minor_gong_volume": {},
+
+    "lb_pra_settings": "Pranayama",
+    "@lb_pra_settings": {},
+
+    "lb_pra_start_round": "Realizar la preparación respiración",
+    "@lb_pra_start_round": {},
+
+    "lb_pra_set_duration": "Duración de la ronda",
+    "@lb_pra_set_duration": {},
+
+    "lb_pra_use_metronome": "Usa metrónomo de un segundo",
+    "@lb_pra_use_metronome": {},
+
+    "lb_pra_metronome_volume": "Volumen del metrónomo",
+    "@lb_pra_metronome_volume": {},
+
+    "lb_app_settings": "Configuración",
+    "@lb_app_settings": {},
+
+    "lb_app_use_silent_mode": "Usar el modo de silencio al Inicio",
+    "@lb_app_use_silent_mode": {},
+
+    "lb_app_color_scheme": "Esquema de color",
+    "@lb_app_color_scheme": {},
+
+    "lb_app_language": "Idioma",
+    "@lb_app_language": {},
+
+    "lb_language_system_default": "Predeterminado del sistema",
+    "@lb_language_system_default": {},
+
+    "permission_msg_title": "No molestar",
+    "@permission_msg_title": {},
+
+    "permission_msg_1": "La aplicación puede silenciar automáticamente tu teléfono durante la meditación.",
+    "@permission_msg_1": {},
+
+    "permission_msg_2": "Esto evitará llamadas y notificaciones que distraigan para que puedas concentrarte en tu práctica.",
+    "@permission_msg_2": {},
+
+    "permission_msg_3": "Puedes cambiar esto en cualquier momento en los ajustes de la aplicación.",
+    "@permission_msg_3": {},
+
+    "permission_msg_reject": "Ahora no",
+    "@permission_msg_reject": {},
+
+    "permission_msg_accept": "Permitir",
+    "@permission_msg_accept": {},
+
+    "permission_msg_dont_ask": "No volver a preguntar",
+    "@permission_msg_dont_ask": {},
+
+    "permission_denied_msg": "No se concedió el permiso de modo silencioso. Puedes habilitarlo más tarde en Ajustes.",
+    "@permission_denied_msg": {},
+
+    "permission_permanently_denied_msg": "El permiso de modo silencioso fue denegado. Por favor, habilítalo en los ajustes del dispositivo.",
+    "@permission_permanently_denied_msg": {},
+
+    "permission_open_settings": "Abrir Ajustes",
+    "@permission_open_settings": {},
+
+    "error_no_internet": "Conexión a Internet no detectada. Compruebe su configuración e inténtelo de nuevo.",
+    "@error_no_internet": {},
+
+    "error_app_version": "El servicio devolvió un error. Asegúrese de que está utilizando la versión actual de la aplicación y vuelva a intentarlo.",
+    "@error_app_version": {},
+
+    "error_unknown": "Error desconocido.",
+    "@error_unknown": {},
+
+    "lb_miditation_from_ai": "Meditación de la IA",
+    "@lb_miditation_from_ai": {},
+
+    "lb_created_by_ai": "Creado por IA",
+    "@lb_created_by_ai": {},
+
+    "created_by_ai_msg": "Todas las meditaciones guiadas presentadas aquí fueron creadas y expresadas por inteligencia artificial. La IA determina el tema y el contenido de la meditación, cada día la IA ofrece diferentes opciones.\nAntes de descargar la meditación, puede verla descargando primero solo el texto de la meditación.\n¿Cómo entiende la IA la esencia y los objetivos de la meditación? Me interesaba mirarme en ese espejo.",
+    "@created_by_ai_msg": {},
+
+    "lb_introduction": "Entrada",
+    "@lb_introduction": {},
+
+    "lb_conclusion": "Finalización",
+    "@lb_conclusion": {},
+
+    "msg_session_active_locked": "Sesión en curso: algunos ajustes están bloqueados.",
+    "@msg_session_active_locked": {},
+
+    "help_pra_title": "Sobre el Pranayama",
+    "@help_pra_title": {},
+
+    "help_pra_content": "El Pranayama es una práctica yóguica de control de la respiración. En esta aplicación, se utiliza como una etapa preparatoria antes de la meditación principal para calmar la mente y concentrarse.",
+    "@help_pra_content": {},
+
+    "help_silence_title": "Sobre el Modo Silencio",
+    "@help_silence_title": {},
+
+    "help_silence_content": "Cuando está activado, la aplicación activará automáticamente el modo 'No molestar' en su dispositivo durante la sesión para evitar interrupciones. Se restaurará después de que finalice la sesión.",
+    "@help_silence_content": {},
+
+    "lb_pranayama_desc": "Ejercicios de respiración para prepararse para la meditación",
+    "@lb_pranayama_desc": {},
+
+    "lb_session_gong_desc": "Suena al inicio y al final de tu meditación",
+    "@lb_session_gong_desc": {},
+
+    "lb_round_gong_desc": "Suena a intervalos regulares durante la meditación",
+    "@lb_round_gong_desc": {},
+
+    "lb_minor_gong_desc": "Sonidos suaves de recordatorio entre intervalos de ronda",
+    "@lb_minor_gong_desc": {},
+
+    "lb_metronome_desc": "Sonido rítmico para marcar tu respiración",
+    "@lb_metronome_desc": {},
+
+    "lb_silent_mode_desc": "Silenciar los sonidos del dispositivo durante la meditación",
+    "@lb_silent_mode_desc": {},
+
+    "lb_reset_defaults": "Restablecer valores predeterminados",
+    "@lb_reset_defaults": {},
+
+    "lb_reset_confirm_title": "¿Restablecer configuración?",
+    "@lb_reset_confirm_title": {},
+
+    "lb_reset_confirm_message": "Todos los ajustes se restaurarán a sus valores originales.",
+    "@lb_reset_confirm_message": {},
+
+    "lb_interval_example": "Para sesión de {duration} min: a las {intervals}",
+    "@lb_interval_example": {
+        "placeholders": {
+            "duration": {"type": "int"},
+            "intervals": {"type": "String"}
+        }
+    },
+
+    "lb_no_meditations_available": "No hay meditaciones disponibles aún",
+    "@lb_no_meditations_available": {},
+
+    "lb_no_meditations_subtitle": "Nuevas meditaciones de IA se generan diariamente",
+    "@lb_no_meditations_subtitle": {},
+
+    "lb_pull_to_refresh": "Desliza para actualizar",
+    "@lb_pull_to_refresh": {},
+
+    "lb_scheduling_mode": "Modo de programación de sonidos",
+    "@lb_scheduling_mode": {},
+
+    "lb_mode_interval": "Intervalo",
+    "@lb_mode_interval": {},
+
+    "lb_mode_advanced": "Avanzado",
+    "@lb_mode_advanced": {},
+
+    "lb_advanced_schedule": "Programación personalizada",
+    "@lb_advanced_schedule": {},
+
+    "lb_advanced_schedule_desc": "Configura sonidos en momentos específicos",
+    "@lb_advanced_schedule_desc": {},
+
+    "lb_add_sound_event": "Añadir sonido",
+    "@lb_add_sound_event": {},
+
+    "lb_edit_event": "Editar",
+    "@lb_edit_event": {},
+
+    "lb_delete_event": "Eliminar",
+    "@lb_delete_event": {},
+
+    "lb_event_time": "Hora",
+    "@lb_event_time": {},
+
+    "lb_event_sound_type": "Tipo de sonido",
+    "@lb_event_sound_type": {},
+
+    "lb_event_volume": "Volumen",
+    "@lb_event_volume": {},
+
+    "lb_save_schedule": "Guardar programación",
+    "@lb_save_schedule": {},
+
+    "lb_load_schedule": "Cargar programación",
+    "@lb_load_schedule": {},
+
+    "lb_schedule_name": "Nombre de la programación",
+    "@lb_schedule_name": {},
+
+    "lb_no_events_scheduled": "No hay sonidos programados",
+    "@lb_no_events_scheduled": {},
+
+    "lb_no_events_scheduled_desc": "Toca + para añadir sonidos",
+    "@lb_no_events_scheduled_desc": {},
+
+    "lb_saved_schedules": "Programaciones guardadas",
+    "@lb_saved_schedules": {},
+
+    "lb_no_saved_schedules": "No hay programaciones guardadas",
+    "@lb_no_saved_schedules": {},
+
+    "lb_schedule_preview": "Vista previa de programación",
+    "@lb_schedule_preview": {},
+
+    "lb_sound_session": "Sesión",
+    "@lb_sound_session": {},
+
+    "lb_sound_round": "Ronda",
+    "@lb_sound_round": {},
+
+    "lb_sound_minor": "Menor",
+    "@lb_sound_minor": {},
+
+    "msg_time_exceeds_duration": "El tiempo no puede superar la duración de la sesión",
+    "@msg_time_exceeds_duration": {},
+
+    "msg_schedule_saved": "Programación guardada",
+    "@msg_schedule_saved": {},
+
+    "msg_schedule_loaded": "Programación cargada",
+    "@msg_schedule_loaded": {},
+
+    "msg_events_filtered": "{count} eventos eliminados (superaban la duración)",
+    "@msg_events_filtered": {
+        "placeholders": {
+            "count": {"type": "int"}
+        }
+    },
+
+    "lb_delete_schedule": "Eliminar programación",
+    "@lb_delete_schedule": {},
+
+    "msg_confirm_delete_schedule": "¿Estás seguro de que quieres eliminar esta programación?",
+    "@msg_confirm_delete_schedule": {},
+
+    "lb_event_repeat_count": "Repetir",
+    "@lb_event_repeat_count": {},
+
+    "msg_minute_already_used": "Este minuto ya tiene un sonido",
+    "@msg_minute_already_used": {}
+}

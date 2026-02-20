@@ -1,0 +1,4 @@
+version = "one"
+api_keys = ["111", "222"]
+durations = [60, 30, 20]
+log_level = "Debug"
