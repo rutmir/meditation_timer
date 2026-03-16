@@ -48,7 +48,11 @@ fn build_redis_stat_key (stat: Statistic, language: Option<Language>, duration: 
     }
 }
 
-fn need_load(cache_update_at: Option<DateTime<Utc>>, redis_updated_at: DateTime<Utc>) -> bool {
+fn need_load(cache_update_at: Option<DateTime<Utc>>, redis_updated_at: DateTime<Utc>, cache_is_empty: bool) -> bool {
+    if cache_is_empty {
+        return true;
+    }
+
     if let Some(cache_update_at) = cache_update_at {
         return redis_updated_at > cache_update_at;
     }
@@ -357,51 +361,60 @@ impl DataCacheInner {
         if let Some(mut conn) = self.pool.get().await.ok() {
             let _ = conn.set::<&str, &MeditationScript, ()>(&redis_key, &script).await;
             let _ = conn.set::<&str, i64, ()>(_KEY_LAST_UPDATE_AT, Utc::now().timestamp_millis()).await;
-        } 
+        }
 
         self.collapse(language, duration).await;
+
+        // Keep lookup tables in sync so callers see the new script immediately
+        // without waiting for the next lazy_load() cycle.
+        let lang_durations = self.inner_language_durations();
+        let languages = lang_durations.keys().cloned().collect();
+        self.language_durations = lang_durations;
+        self.languages = languages;
     }
 
     pub async fn lazy_load(&mut self) {
         let millis = self.get_last_updated_mills().await;
 
-        if let Some(updated_at) = DateTime::from_timestamp_millis(millis) {
-            if need_load(self.last_update_at, updated_at) {
-                let config = Config::instance();
+        let cache_is_empty = self.scripts.is_empty();
+        let updated_at = DateTime::from_timestamp_millis(millis)
+            .unwrap_or_else(|| DateTime::from_timestamp_millis(0).unwrap());
 
-                // English
-                for duration in config.durations.iter() {
-                    self.upload_script(Language::English, *duration).await;
-                }
+        if need_load(self.last_update_at, updated_at, cache_is_empty) {
+            let config = Config::instance();
 
-                // Spanish
-                for duration in config.durations.iter() {
-                    self.upload_script(Language::Spanish, *duration).await;
-                }
-
-                // Franch
-                for duration in config.durations.iter() {
-                    self.upload_script(Language::Franch, *duration).await;
-                }
-
-                // Russian
-                for duration in config.durations.iter() {
-                    self.upload_script(Language::Russian, *duration).await;
-                }
-
-                // populate service tables
-                let lang_durations = self.inner_language_durations();
-                let languages = lang_durations.iter().fold(
-                    HashSet::<Language>::new(), 
-                    |mut hs, x| -> HashSet<Language> {
-                        hs.insert(*x.0);
-                        hs
-                    });
-
-                self.language_durations = lang_durations;
-                self.languages = languages;
-                self.last_update_at = Some(Utc::now());
+            // English
+            for duration in config.durations.iter() {
+                self.upload_script(Language::English, *duration).await;
             }
+
+            // Spanish
+            for duration in config.durations.iter() {
+                self.upload_script(Language::Spanish, *duration).await;
+            }
+
+            // French
+            for duration in config.durations.iter() {
+                self.upload_script(Language::Franch, *duration).await;
+            }
+
+            // Russian
+            for duration in config.durations.iter() {
+                self.upload_script(Language::Russian, *duration).await;
+            }
+
+            // populate service tables
+            let lang_durations = self.inner_language_durations();
+            let languages = lang_durations.iter().fold(
+                HashSet::<Language>::new(),
+                |mut hs, x| -> HashSet<Language> {
+                    hs.insert(*x.0);
+                    hs
+                });
+
+            self.language_durations = lang_durations;
+            self.languages = languages;
+            self.last_update_at = Some(Utc::now());
         }
     }
 

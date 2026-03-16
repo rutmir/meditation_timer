@@ -99,13 +99,16 @@ class AiLogic {
   String get displayTime => _displayTime;
   bool get isBaseLogicInit => _baseLogicInit;
 
-  Future<bool> needUserPermission() => _baseLogic.needUserPermission();
-  void verifyPermission() => _baseLogic.verifyPermission();
-  void dismissPermissionDialog() => _baseLogic.dismissPermissionDialog();
+  Future<bool> needUserPermission() async =>
+      _baseLogicInit && await _baseLogic.needUserPermission();
+  void verifyPermission() { if (_baseLogicInit) _baseLogic.verifyPermission(); }
+  void dismissPermissionDialog() { if (_baseLogicInit) _baseLogic.dismissPermissionDialog(); }
 
-  set appSettingsUseSilenceMode(bool val) =>
-      _baseLogic.appSettingsUseSilenceMode = val;
-  bool popShouldOpenAppSettings() => _baseLogic.popShouldOpenAppSettings();
+  set appSettingsUseSilenceMode(bool val) {
+    if (_baseLogicInit) _baseLogic.appSettingsUseSilenceMode = val;
+  }
+  bool popShouldOpenAppSettings() =>
+      _baseLogicInit && _baseLogic.popShouldOpenAppSettings();
 
   String popSnackInfoMessage() {
     if (snackInfoMessage.isEmpty) {
