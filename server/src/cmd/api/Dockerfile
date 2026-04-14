@@ -1,9 +1,11 @@
 FROM rust:1.87-alpine AS builder
 
 RUN apk update
-#RUN apk add --no-cache libc-dev openssl-dev build-base musl-dev pkgconfig 
-#RUN apk add --no-cache libc-dev libressl-dev build-base musl-dev pkgconfig
-RUN apk add --no-cache musl-dev libressl-dev
+# build-base: gcc/g++/make needed by solana-sdk transitive C deps (ring, libsecp256k1 etc.)
+# perl: required by ring's asm preprocessing
+# musl-dev: musl libc headers for static linking
+# libressl-dev: TLS headers (reqwest rustls-tls doesn't need it, kept for safety)
+RUN apk add --no-cache musl-dev libressl-dev build-base perl
 
 # Install musl target for static linking
 RUN rustup target add x86_64-unknown-linux-musl
