@@ -2,7 +2,7 @@ use bb8::Pool;
 use bb8_redis::{redis::AsyncCommands, RedisConnectionManager};
 use reqwest::Client;
 use serde::Deserialize;
-use solana_sdk::pubkey::Pubkey;
+use solana_pubkey::Pubkey;
 use std::str::FromStr;
 
 /// SPL Token program ID (standard token, not Token-2022).

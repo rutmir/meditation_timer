@@ -1,11 +1,10 @@
 FROM rust:1.87-alpine AS builder
 
 RUN apk update
-# build-base: gcc/g++/make needed by solana-sdk transitive C deps (ring, libsecp256k1 etc.)
-# perl: required by ring's asm preprocessing
 # musl-dev: musl libc headers for static linking
-# libressl-dev: TLS headers (reqwest rustls-tls doesn't need it, kept for safety)
-RUN apk add --no-cache musl-dev libressl-dev build-base perl
+# libressl-dev: kept for any future native-TLS deps (reqwest uses rustls-tls, so not strictly needed)
+# No gcc/build-base needed: all deps (solana-pubkey, reqwest/rustls, axum) are pure Rust
+RUN apk add --no-cache musl-dev libressl-dev
 
 # Install musl target for static linking
 RUN rustup target add x86_64-unknown-linux-musl
