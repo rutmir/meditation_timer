@@ -13,8 +13,8 @@ WORKDIR /usr/src/app
 # Copy Cargo.toml and Cargo.lock first to leverage Docker caching for dependencies
 COPY Cargo.toml Cargo.lock ./
 
-# Build dummy to cache dependencies
-RUN mkdir src && echo "fn main() {}" > src/main.rs && cargo build --target x86_64-unknown-linux-musl --release
+# Build dummy to cache dependencies (api feature only — avoids gemini-rs from job feature)
+RUN mkdir src && echo "fn main() {}" > src/main.rs && cargo build --target x86_64-unknown-linux-musl --release --no-default-features --features api
 
 # Remove dummy file and copy actual source code
 RUN rm src/main.rs
@@ -36,6 +36,11 @@ WORKDIR /app
 
 # Copy the compiled binary from the builder stage
 COPY --from=builder /usr/src/app/src/cmd/api/target/x86_64-unknown-linux-musl/release/meditimer-api ./meditimer-api
+
+# Copy default config — override solana.roex_mint and redis via mounted volume or ENV vars.
+# Note: figment split("_") cannot set underscore-named fields (e.g. rpc_url, roex_mint) via
+# APP_SOLANA_* env vars; mount a custom app_config.toml for those overrides.
+COPY --from=builder /usr/src/app/src/cmd/api/app_config.toml ./app_config.toml
 
 # Expose port if your application is a server
 EXPOSE 3000

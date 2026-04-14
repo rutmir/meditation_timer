@@ -13,8 +13,8 @@ WORKDIR /usr/src/app
 # Copy Cargo.toml and Cargo.lock first to leverage Docker caching for dependencies
 COPY Cargo.toml Cargo.lock ./
 
-# Build dummy to cache dependencies
-RUN mkdir src && echo "fn main() {}" > src/main.rs && cargo build --target x86_64-unknown-linux-musl --release
+# Build dummy to cache dependencies (job feature only — avoids solana-sdk from api feature)
+RUN mkdir src && echo "fn main() {}" > src/main.rs && cargo build --target x86_64-unknown-linux-musl --release --no-default-features --features job
 
 # Remove dummy file and copy actual source code
 RUN rm src/main.rs
