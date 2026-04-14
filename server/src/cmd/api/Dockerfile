@@ -38,11 +38,6 @@ WORKDIR /app
 # Copy the compiled binary from the builder stage
 COPY --from=builder /usr/src/app/src/cmd/api/target/x86_64-unknown-linux-musl/release/meditimer-api ./meditimer-api
 
-# Copy default config — override solana.roex_mint and redis via mounted volume or ENV vars.
-# Note: figment split("_") cannot set underscore-named fields (e.g. rpc_url, roex_mint) via
-# APP_SOLANA_* env vars; mount a custom app_config.toml for those overrides.
-COPY --from=builder /usr/src/app/src/cmd/api/app_config.toml ./app_config.toml
-
 # Expose port if your application is a server
 EXPOSE 3000
 
