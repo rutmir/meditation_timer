@@ -99,12 +99,44 @@ impl Clone for Redis
 // }
 
 #[derive(Deserialize, Debug)]
+pub struct SolanaConfig {
+    /// JSON-RPC endpoint — any public or provider URL.
+    /// Default: https://api.mainnet-beta.solana.com (free, no sign-up).
+    /// Override with Chainstack/QuickNode via APP_SOLANA_RPC_URL env var.
+    pub rpc_url: String,
+    /// ROEX SPL token mint address. Empty string disables the ROEX gate.
+    pub roex_mint: String,
+    /// Fallback ROEX/USD price when Jupiter API is unavailable.
+    pub roex_price_fallback: f64,
+    /// Minimum USD value in ROEX a wallet must hold to access premium meditations.
+    pub tier_meditation_usd: f64,
+    /// Seconds to cache wallet ROEX balance in Redis.
+    pub balance_cache_ttl: u64,
+    /// Seconds to cache ROEX/USD price in Redis.
+    pub price_cache_ttl: u64,
+}
+
+impl Clone for SolanaConfig {
+    fn clone(&self) -> Self {
+        SolanaConfig {
+            rpc_url: self.rpc_url.clone(),
+            roex_mint: self.roex_mint.clone(),
+            roex_price_fallback: self.roex_price_fallback,
+            tier_meditation_usd: self.tier_meditation_usd,
+            balance_cache_ttl: self.balance_cache_ttl,
+            price_cache_ttl: self.price_cache_ttl,
+        }
+    }
+}
+
+#[derive(Deserialize, Debug)]
 pub struct Config {
     pub version: String,
     // pub api_keys: Vec<String>,
     pub durations: Vec<u32>,
     pub redis: Redis,
     pub log_level: Option<LevelFilter>,
+    pub solana: SolanaConfig,
     // pub gemini: Gemini,
     // pub tts: TTS,
     // pub jobs: JobConfig,
@@ -119,6 +151,7 @@ impl Clone for Config
             durations: self.durations.clone(),
             redis: self.redis.clone(),
             log_level: self.log_level.clone(),
+            solana: self.solana.clone(),
             // gemini: self.gemini.clone(),
             // tts: self.tts.clone(),
             // jobs: self.jobs.clone(),

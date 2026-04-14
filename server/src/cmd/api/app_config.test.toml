@@ -1,3 +1,11 @@
 version = "one"
 durations = [60, 30, 20]
 log_level = "Debug"
+
+[solana]
+rpc_url             = "https://api.mainnet-beta.solana.com"
+roex_mint           = ""          # empty = ROEX gate disabled in tests
+roex_price_fallback = 0.0000025
+tier_meditation_usd = 1.0
+balance_cache_ttl   = 300
+price_cache_ttl     = 300

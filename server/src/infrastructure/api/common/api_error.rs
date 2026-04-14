@@ -1,4 +1,4 @@
-use axum::{response::{IntoResponse, Response},  http::StatusCode};
+use axum::{response::{IntoResponse, Response}, http::StatusCode, Json};
 use serde::Serialize;
 use thiserror::Error;
 use super::api_response::ApiResponse;
@@ -16,9 +16,12 @@ pub enum ApiError<'a> {
     #[error("couldn't find the requested resource")]
     NotFound,
     #[error("not supported entity type")]
-    UnsupportedMediaType
-    // #[error(transparent)]
-    // PaginationError(#[from] PaginationError),
+    UnsupportedMediaType,
+    /// 402: wallet doesn't hold enough ROEX.
+    /// `required_roex` — minimum ROEX units needed at current price.
+    /// `price_usd`     — current ROEX price in USD used for the calculation.
+    #[error("payment required")]
+    PaymentRequired { required_roex: f64, price_usd: f64 },
 }
 
 impl<'a> IntoResponse for ApiError<'a>  {
@@ -32,6 +35,18 @@ impl<'a> IntoResponse for ApiError<'a>  {
             Self::InternalServerError(msg, details) => (StatusCode::INTERNAL_SERVER_ERROR, ErrorResponse::new(StatusCode::INTERNAL_SERVER_ERROR.as_u16(), msg.as_str(), details)).into_response(),
             Self::NotFound => (StatusCode::NOT_FOUND, ErrorResponse::new(StatusCode::NOT_FOUND.as_u16(), message.as_str(), None)).into_response(),
             Self::UnsupportedMediaType => (StatusCode::UNSUPPORTED_MEDIA_TYPE, ErrorResponse::new(StatusCode::UNSUPPORTED_MEDIA_TYPE.as_u16(), message.as_str(), None)).into_response(),
+            Self::PaymentRequired { required_roex, price_usd } => {
+                let body = serde_json::json!({
+                    "apiVersion": "0.1",
+                    "error": {
+                        "code": 402,
+                        "message": "payment required",
+                        "required_roex": required_roex,
+                        "price_usd": price_usd
+                    }
+                });
+                (StatusCode::PAYMENT_REQUIRED, Json(body)).into_response()
+            },
         }
     }
 }

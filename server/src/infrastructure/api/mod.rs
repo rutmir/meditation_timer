@@ -25,6 +25,8 @@ use crate::{entities::error::AppError, infrastructure::api::api_config::ApiConfi
 
 pub const HEADER_X_API_KEY: &'static str = "x-api-key";
 pub const HEADER_X_APP_VERSION: &'static str = "x-app-version";
+/// Solana wallet public key (base58). Required for ROEX-gated endpoints.
+pub const HEADER_X_WALLET_PUBKEY: &'static str = "x-wallet-pubkey";
 
 fn get_auth_header_value(req: &Request) -> Result<&str, AppError> {
     for (key, value) in req.headers().iter() {
