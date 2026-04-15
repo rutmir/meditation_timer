@@ -677,6 +677,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This minute already has a sound'**
   String get msg_minute_already_used;
+
+  /// No description provided for @wallet_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Wallet'**
+  String get wallet_title;
+
+  /// No description provided for @wallet_required_title.
+  ///
+  /// In en, this message translates to:
+  /// **'ROEX token required'**
+  String get wallet_required_title;
+
+  /// No description provided for @wallet_required_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold at least {amount} ROEX to unlock AI meditations'**
+  String wallet_required_amount(String amount);
+
+  /// No description provided for @wallet_current_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Current price: {price} / ROEX'**
+  String wallet_current_price(String price);
+
+  /// No description provided for @wallet_pubkey_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Solana Wallet Address'**
+  String get wallet_pubkey_label;
+
+  /// No description provided for @wallet_pubkey_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your public key (base58)'**
+  String get wallet_pubkey_hint;
+
+  /// No description provided for @wallet_invalid_pubkey.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid Solana address. Check and try again.'**
+  String get wallet_invalid_pubkey;
+
+  /// No description provided for @wallet_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect'**
+  String get wallet_save;
+
+  /// No description provided for @wallet_disconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnect Wallet'**
+  String get wallet_disconnect;
+
+  /// No description provided for @wallet_buy_roex.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy ROEX on Jupiter'**
+  String get wallet_buy_roex;
+
+  /// No description provided for @wallet_copy_tooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy address'**
+  String get wallet_copy_tooltip;
 }
 
 class _AppLocalizationsDelegate

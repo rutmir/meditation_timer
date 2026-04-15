@@ -11,6 +11,8 @@ import 'service/ai_meditation_service.dart';
 import 'service/settings_service.dart';
 import 'service/system_channel_service.dart';
 import 'service/theme_service.dart';
+import 'service/transport_service.dart';
+import 'service/wallet_service.dart';
 import 'views/common/constants.dart';
 
 enum PlayStatus { play, pause, stop }
@@ -18,6 +20,8 @@ enum PlayStatus { play, pause, stop }
 class AiLogic {
   final AiMeditationService aiService;
   final ThemeService theme;
+  final WalletService _walletService;
+  final TransportService _transportService;
   final _watch = Stopwatch();
   final _player = AudioController();
   AiMeditationSession? _session;
@@ -31,18 +35,25 @@ class AiLogic {
   String snackInfoMessage = '';
   List<MeditationInfo> _infoList = [];
   MeditationScript? _script;
-  // CancelableCompleter<void> _completer = CancelableCompleter(onCancel: () {});
   CancelableOperation<void>? _operation;
   String _displayTime = '';
+
+  // ROEX wallet state
+  String? _walletPubkey;
+  double _requiredRoex = 0.0;
+  double _priceUsd = 0.0;
 
   AiLogic({
     required SettingsService settings,
     required SystemChannelService system,
     required this.aiService,
     required this.theme,
+    required WalletService walletService,
+    required TransportService transportService,
     required String Function(String) l10n,
     required Function() trigger,
-  }) {
+  })  : _walletService = walletService,
+        _transportService = transportService {
     () async {
       _baseLogic = await BaseLogic.buildBaseLogic(
         l10n,
@@ -51,6 +62,7 @@ class AiLogic {
         trigger,
       );
       _baseLogicInit = true;
+      _walletPubkey = await _walletService.getWalletPubkey();
       _baseLogic.trigger();
     }();
   }
@@ -99,6 +111,26 @@ class AiLogic {
   String get displayTime => _displayTime;
   bool get isBaseLogicInit => _baseLogicInit;
 
+  // ROEX wallet
+  String? get walletPubkey => _walletPubkey;
+  bool get hasWallet => _walletPubkey != null;
+  double get requiredRoex => _requiredRoex;
+  double get priceUsd => _priceUsd;
+
+  Future<void> saveWallet(String pubkey) async {
+    await _walletService.saveWalletPubkey(pubkey);
+    _walletPubkey = pubkey;
+    _transportService.setWalletPubkey(pubkey);
+    _baseLogic.trigger();
+  }
+
+  Future<void> clearWallet() async {
+    await _walletService.clearWalletPubkey();
+    _walletPubkey = null;
+    _transportService.setWalletPubkey(null);
+    _baseLogic.trigger();
+  }
+
   Future<bool> needUserPermission() async =>
       _baseLogicInit && await _baseLogic.needUserPermission();
   void verifyPermission() { if (_baseLogicInit) _baseLogic.verifyPermission(); }
@@ -121,11 +153,24 @@ class AiLogic {
     return out;
   }
 
+  /// Returns the data or null on error.
+  /// On `PaymentRequiredError` the caller should switch to wallet mode —
+  /// check [needsWalletMode] after calling this method.
+  bool _needsWalletMode = false;
+  bool get needsWalletMode => _needsWalletMode;
+
+  void clearWalletModeFlag() => _needsWalletMode = false;
+
   Future<T?> fetchData<T>(Future<T?> dataFuture) async {
+    _needsWalletMode = false;
     try {
       return await dataFuture;
     } on NoConnectionError {
       snackInfoMessage = _baseLogic.l10n(noConnectionErrorMsg);
+    } on PaymentRequiredError catch (e) {
+      _requiredRoex = e.requiredRoex;
+      _priceUsd = e.priceUsd;
+      _needsWalletMode = true;
     } catch (e) {
       if (e is BadRequestError ||
           e is ForbiddenError ||

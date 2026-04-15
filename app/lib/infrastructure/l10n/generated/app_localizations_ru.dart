@@ -319,4 +319,42 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get msg_minute_already_used => 'На эту минуту уже назначен звук';
+
+  @override
+  String get wallet_title => 'Подключить кошелёк';
+
+  @override
+  String get wallet_required_title => 'Требуется токен ROEX';
+
+  @override
+  String wallet_required_amount(String amount) {
+    return 'Держите не менее $amount ROEX для доступа к AI-медитациям';
+  }
+
+  @override
+  String wallet_current_price(String price) {
+    return 'Текущая цена: $price / ROEX';
+  }
+
+  @override
+  String get wallet_pubkey_label => 'Адрес Solana кошелька';
+
+  @override
+  String get wallet_pubkey_hint => 'Введите публичный ключ (base58)';
+
+  @override
+  String get wallet_invalid_pubkey =>
+      'Неверный адрес Solana. Проверьте и повторите.';
+
+  @override
+  String get wallet_save => 'Подключить';
+
+  @override
+  String get wallet_disconnect => 'Отключить кошелёк';
+
+  @override
+  String get wallet_buy_roex => 'Купить ROEX на Jupiter';
+
+  @override
+  String get wallet_copy_tooltip => 'Скопировать адрес';
 }

@@ -8,6 +8,7 @@ import '../../service/device_service.dart';
 import '../../service/common/json_request.dart';
 import '../../service/common/json_response.dart';
 import '../../service/transport_service.dart';
+import '../../service/wallet_service.dart';
 import '../common/transport_error.dart';
 import 'http_client_factory.dart';
 
@@ -15,21 +16,31 @@ class AppTransportService extends TransportService {
   final String _baseApiUrl;
   final String _apiKey;
   final DeviceService _deviceService;
+  final WalletService _walletService;
 
   late final Client _client;
   late final String _appVersion;
+  String? _walletPubkey;
 
   AppTransportService({
     required DeviceService deviceService,
+    required WalletService walletService,
     required String baseApiUrl,
     required String apiKey,
   }) : _deviceService = deviceService,
+       _walletService = walletService,
        _baseApiUrl = baseApiUrl,
        _apiKey = apiKey,
        _client = createPlatformClient();
 
   Future<void> init() async {
     _appVersion = await _deviceService.getAppVersion();
+    _walletPubkey = await _walletService.getWalletPubkey();
+  }
+
+  @override
+  void setWalletPubkey(String? pubkey) {
+    _walletPubkey = pubkey;
   }
 
   @override
@@ -95,6 +106,9 @@ class AppTransportService extends TransportService {
   BaseRequest _addHeaders(BaseRequest request) {
     request.headers['x-api-key'] = _apiKey;
     request.headers['x-app-version'] = _appVersion;
+    if (_walletPubkey != null) {
+      request.headers['x-wallet-pubkey'] = _walletPubkey!;
+    }
     return request;
   }
 
@@ -181,6 +195,22 @@ class AppTransportService extends TransportService {
 
     if (response.statusCode == HttpStatus.unsupportedMediaType) {
       throw UnsupportedMediaTypeError(response.body);
+    }
+
+    if (response.statusCode == 402) {
+      double requiredRoex = 0.0;
+      double priceUsd = 0.0;
+      try {
+        final json = jsonDecode(response.body) as Map<String, dynamic>;
+        final error = json['error'] as Map<String, dynamic>?;
+        requiredRoex = (error?['required_roex'] as num?)?.toDouble() ?? 0.0;
+        priceUsd = (error?['price_usd'] as num?)?.toDouble() ?? 0.0;
+      } catch (_) {}
+      throw PaymentRequiredError(
+        requiredRoex: requiredRoex,
+        priceUsd: priceUsd,
+        uri: request.url,
+      );
     }
 
     throw TransportError('Unknown error: ${response.body}');

@@ -27,6 +27,20 @@ class NotFoundError extends TransportError {
   NotFoundError([super.message, super.uri]);
 }
 
+/// 402 Payment Required — wallet doesn't hold enough ROEX.
+class PaymentRequiredError extends TransportError {
+  /// Minimum ROEX token units the wallet must hold (ui amount, 6 decimals).
+  final double requiredRoex;
+  /// Current ROEX/USD price used for the calculation.
+  final double priceUsd;
+
+  PaymentRequiredError({
+    required this.requiredRoex,
+    required this.priceUsd,
+    Uri? uri,
+  }) : super('payment required', uri);
+}
+
 class UnsupportedMediaTypeError extends TransportError {
   UnsupportedMediaTypeError([super.message, super.uri]);
 }

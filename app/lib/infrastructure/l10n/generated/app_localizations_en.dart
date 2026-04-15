@@ -318,4 +318,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get msg_minute_already_used => 'This minute already has a sound';
+
+  @override
+  String get wallet_title => 'Connect Wallet';
+
+  @override
+  String get wallet_required_title => 'ROEX token required';
+
+  @override
+  String wallet_required_amount(String amount) {
+    return 'Hold at least $amount ROEX to unlock AI meditations';
+  }
+
+  @override
+  String wallet_current_price(String price) {
+    return 'Current price: $price / ROEX';
+  }
+
+  @override
+  String get wallet_pubkey_label => 'Solana Wallet Address';
+
+  @override
+  String get wallet_pubkey_hint => 'Enter your public key (base58)';
+
+  @override
+  String get wallet_invalid_pubkey =>
+      'Invalid Solana address. Check and try again.';
+
+  @override
+  String get wallet_save => 'Connect';
+
+  @override
+  String get wallet_disconnect => 'Disconnect Wallet';
+
+  @override
+  String get wallet_buy_roex => 'Buy ROEX on Jupiter';
+
+  @override
+  String get wallet_copy_tooltip => 'Copy address';
 }

@@ -13,12 +13,15 @@ import '../service/ai_meditation_service.dart';
 import '../service/settings_service.dart';
 import '../service/system_channel_service.dart';
 import '../service/theme_service.dart';
+import '../service/transport_service.dart';
+import '../service/wallet_service.dart';
 import 'ai_meditation_list_view.dart';
 import 'ai_meditation_script_view.dart';
 import 'ai_meditation_view.dart';
 import 'common/ask_permission_dialog.dart';
 import 'common/constants.dart';
 import 'mixin_page.dart';
+import 'wallet_connect_view.dart';
 
 class AiMeditationPage extends StatefulWidget {
   const AiMeditationPage({super.key});
@@ -35,6 +38,7 @@ class _AiMeditationPageState extends State<AiMeditationPage> with MixinPage {
   late AiMeditationListView listView;
   late AiMeditationScriptView scriptView;
   late AiMeditationView meditationView;
+  late WalletConnectView walletView;
 
   String errorMessage = '';
 
@@ -45,6 +49,8 @@ class _AiMeditationPageState extends State<AiMeditationPage> with MixinPage {
       system: GetIt.I<SystemChannelService>(),
       aiService: GetIt.I<AiMeditationService>(),
       theme: GetIt.I<ThemeService>(),
+      walletService: GetIt.I<WalletService>(),
+      transportService: GetIt.I<TransportService>(),
       l10n: getLocalizedMessage,
       trigger: _stateTrigger,
     );
@@ -68,6 +74,13 @@ class _AiMeditationPageState extends State<AiMeditationPage> with MixinPage {
       logic: logic,
       onRebuild: _stateTrigger,
       onSetPageMode: _setMode,
+    );
+
+    walletView = WalletConnectView(
+      theme: GetIt.I<ThemeService>(),
+      logic: logic,
+      onSaved: () => _setMode(AiPageMode.list),
+      onBack: () => _setMode(AiPageMode.list),
     );
   }
 
@@ -122,7 +135,10 @@ class _AiMeditationPageState extends State<AiMeditationPage> with MixinPage {
   }
 
   void _stateTrigger() {
-    if (logic.isError) {
+    if (logic.needsWalletMode) {
+      logic.clearWalletModeFlag();
+      _setMode(AiPageMode.wallet);
+    } else if (logic.isError) {
       errorMessage = logic.popSnackInfoMessage();
       _setMode(AiPageMode.error);
     } else {
@@ -141,11 +157,9 @@ class _AiMeditationPageState extends State<AiMeditationPage> with MixinPage {
     AiPageMode.list ||
     AiPageMode.view ||
     AiPageMode.meditation ||
+    AiPageMode.wallet ||
     AiPageMode.error => themeService.currentAppStyle.primary,
-    AiPageMode.archive =>
-      themeService
-          .currentAppStyle
-          .primary, //themeService.currentAppStyle.formBackground,
+    AiPageMode.archive => themeService.currentAppStyle.primary,
   };
 
   void _onMeditationStop() {
@@ -199,6 +213,7 @@ class _AiMeditationPageState extends State<AiMeditationPage> with MixinPage {
         ),
         AiPageMode.list => listView.getView(context, safeArea: safeArea),
         AiPageMode.view => scriptView.getView(context, safeArea: safeArea),
+        AiPageMode.wallet => walletView.getView(context, safeArea: safeArea),
       },
       floatingActionButton:
           viewMode == AiPageMode.meditation

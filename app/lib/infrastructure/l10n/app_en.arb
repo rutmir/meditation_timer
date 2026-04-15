@@ -296,5 +296,46 @@
     "@lb_event_repeat_count": {},
 
     "msg_minute_already_used": "This minute already has a sound",
-    "@msg_minute_already_used": {}
+    "@msg_minute_already_used": {},
+
+    "wallet_title": "Connect Wallet",
+    "@wallet_title": {},
+
+    "wallet_required_title": "ROEX token required",
+    "@wallet_required_title": {},
+
+    "wallet_required_amount": "Hold at least {amount} ROEX to unlock AI meditations",
+    "@wallet_required_amount": {
+        "placeholders": {
+            "amount": { "type": "String" }
+        }
+    },
+
+    "wallet_current_price": "Current price: {price} / ROEX",
+    "@wallet_current_price": {
+        "placeholders": {
+            "price": { "type": "String" }
+        }
+    },
+
+    "wallet_pubkey_label": "Solana Wallet Address",
+    "@wallet_pubkey_label": {},
+
+    "wallet_pubkey_hint": "Enter your public key (base58)",
+    "@wallet_pubkey_hint": {},
+
+    "wallet_invalid_pubkey": "Invalid Solana address. Check and try again.",
+    "@wallet_invalid_pubkey": {},
+
+    "wallet_save": "Connect",
+    "@wallet_save": {},
+
+    "wallet_disconnect": "Disconnect Wallet",
+    "@wallet_disconnect": {},
+
+    "wallet_buy_roex": "Buy ROEX on Jupiter",
+    "@wallet_buy_roex": {},
+
+    "wallet_copy_tooltip": "Copy address",
+    "@wallet_copy_tooltip": {}
 }

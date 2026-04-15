@@ -11,4 +11,8 @@ abstract class TransportService {
     JsonRequest request, [
     JsonResponse<T> deserializer,
   ]);
+
+  /// Updates the Solana wallet pubkey sent in the `x-wallet-pubkey` header.
+  /// Pass `null` to remove the header (wallet disconnected).
+  void setWalletPubkey(String? pubkey);
 }

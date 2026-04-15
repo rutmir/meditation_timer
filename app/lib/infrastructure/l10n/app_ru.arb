@@ -296,5 +296,46 @@
     "@lb_event_repeat_count": {},
 
     "msg_minute_already_used": "На эту минуту уже назначен звук",
-    "@msg_minute_already_used": {}
+    "@msg_minute_already_used": {},
+
+    "wallet_title": "Подключить кошелёк",
+    "@wallet_title": {},
+
+    "wallet_required_title": "Требуется токен ROEX",
+    "@wallet_required_title": {},
+
+    "wallet_required_amount": "Держите не менее {amount} ROEX для доступа к AI-медитациям",
+    "@wallet_required_amount": {
+        "placeholders": {
+            "amount": { "type": "String" }
+        }
+    },
+
+    "wallet_current_price": "Текущая цена: {price} / ROEX",
+    "@wallet_current_price": {
+        "placeholders": {
+            "price": { "type": "String" }
+        }
+    },
+
+    "wallet_pubkey_label": "Адрес Solana кошелька",
+    "@wallet_pubkey_label": {},
+
+    "wallet_pubkey_hint": "Введите публичный ключ (base58)",
+    "@wallet_pubkey_hint": {},
+
+    "wallet_invalid_pubkey": "Неверный адрес Solana. Проверьте и повторите.",
+    "@wallet_invalid_pubkey": {},
+
+    "wallet_save": "Подключить",
+    "@wallet_save": {},
+
+    "wallet_disconnect": "Отключить кошелёк",
+    "@wallet_disconnect": {},
+
+    "wallet_buy_roex": "Купить ROEX на Jupiter",
+    "@wallet_buy_roex": {},
+
+    "wallet_copy_tooltip": "Скопировать адрес",
+    "@wallet_copy_tooltip": {}
 }

@@ -296,5 +296,46 @@
     "@lb_event_repeat_count": {},
 
     "msg_minute_already_used": "Este minuto ya tiene un sonido",
-    "@msg_minute_already_used": {}
+    "@msg_minute_already_used": {},
+
+    "wallet_title": "Conectar Billetera",
+    "@wallet_title": {},
+
+    "wallet_required_title": "Se requiere token ROEX",
+    "@wallet_required_title": {},
+
+    "wallet_required_amount": "Mantenga al menos {amount} ROEX para acceder a meditaciones con IA",
+    "@wallet_required_amount": {
+        "placeholders": {
+            "amount": { "type": "String" }
+        }
+    },
+
+    "wallet_current_price": "Precio actual: {price} / ROEX",
+    "@wallet_current_price": {
+        "placeholders": {
+            "price": { "type": "String" }
+        }
+    },
+
+    "wallet_pubkey_label": "Dirección de billetera Solana",
+    "@wallet_pubkey_label": {},
+
+    "wallet_pubkey_hint": "Ingrese su clave pública (base58)",
+    "@wallet_pubkey_hint": {},
+
+    "wallet_invalid_pubkey": "Dirección Solana inválida. Verifique e intente de nuevo.",
+    "@wallet_invalid_pubkey": {},
+
+    "wallet_save": "Conectar",
+    "@wallet_save": {},
+
+    "wallet_disconnect": "Desconectar Billetera",
+    "@wallet_disconnect": {},
+
+    "wallet_buy_roex": "Comprar ROEX en Jupiter",
+    "@wallet_buy_roex": {},
+
+    "wallet_copy_tooltip": "Copiar dirección",
+    "@wallet_copy_tooltip": {}
 }

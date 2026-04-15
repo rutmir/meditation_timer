@@ -11,6 +11,7 @@ import '../service/system_channel_service.dart';
 import '../service/theme_service.dart';
 import '../service/tips_service.dart';
 import '../service/transport_service.dart';
+import '../service/wallet_service.dart';
 import 'services/app_ai_meditation_service.dart';
 import 'services/app_device_service.dart';
 import 'services/app_locale_service.dart';
@@ -20,6 +21,7 @@ import 'services/app_system_channel_service.dart';
 import 'services/app_theme_service.dart';
 import 'services/app_tips_service.dart';
 import 'services/app_transport_service.dart';
+import 'services/app_wallet_service.dart';
 import 'services/schedule_storage_service.dart';
 
 Future<GetIt> buildServices() async {
@@ -28,6 +30,9 @@ Future<GetIt> buildServices() async {
   locator
     ..registerLazySingleton<StorageService>(() => AppStorageService())
     ..registerLazySingleton<DeviceService>(() => AppDeviceService())
+    ..registerLazySingleton<WalletService>(
+      () => AppWalletService(storage: locator.get<StorageService>()),
+    )
     ..registerSingletonAsync<ThemeService>(() async {
       final service = AppThemeService(storage: locator.get<StorageService>());
       await service.init();
@@ -52,6 +57,7 @@ Future<GetIt> buildServices() async {
         baseApiUrl: dotenv.env['API_URL']!,
         apiKey: dotenv.env['API_KEY']!,
         deviceService: locator.get<DeviceService>(),
+        walletService: locator.get<WalletService>(),
       );
       await service.init();
 
