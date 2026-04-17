@@ -4,10 +4,14 @@ RUN apk update
 # musl-dev: musl libc headers for static linking
 # libressl-dev: kept for any future native-TLS deps (reqwest uses rustls-tls, so not strictly needed)
 # No gcc/build-base needed: all deps (solana-pubkey, reqwest/rustls, axum) are pure Rust
-RUN apk add --no-cache musl-dev libressl-dev
+RUN apk add --no-cache musl-dev gcc pkgconfig libressl-dev
 
 # Install musl target for static linking
 RUN rustup target add x86_64-unknown-linux-musl
+
+# Static link against Alpine's LibreSSL (used by reqwest native-tls)
+ENV OPENSSL_STATIC=1
+ENV OPENSSL_DIR=/usr
 
 WORKDIR /usr/src/app
 

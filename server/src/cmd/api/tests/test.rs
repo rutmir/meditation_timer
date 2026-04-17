@@ -245,6 +245,50 @@ mod tests {
         // log::debug!("result {}", s);
     }
 
+    /// When `roex_mint` is empty (gate disabled), `x-wallet-pubkey` header must be
+    /// accepted, rejected, or absent — all yield the same result as a plain request.
+    #[tokio::test]
+    async fn api_meditation_wallet_gate_disabled() {
+        logger::configure_logger();
+
+        let mut app = Router::new()
+            .nest("/api", api::api().await)
+            .layer(TraceLayer::new_for_http())
+            .into_service();
+
+        // No wallet header → 200 (gate off, treated as normal request)
+        let request = Request::builder()
+            .uri("/api/meditation?duration=60&lang=en")
+            .header(api::HEADER_X_API_KEY, "111")
+            .header(api::HEADER_X_APP_VERSION, "111")
+            .body(Body::empty()).unwrap();
+        let response = ServiceExt::<Request<Body>>::ready(&mut app)
+            .await.unwrap().call(request).await.unwrap();
+        assert_eq!(response.status(), StatusCode::OK, "gate disabled — no wallet header should yield 200");
+
+        // Valid wallet pubkey header → 200 (header present but ignored, gate off)
+        let request = Request::builder()
+            .uri("/api/meditation?duration=60&lang=en")
+            .header(api::HEADER_X_API_KEY, "111")
+            .header(api::HEADER_X_APP_VERSION, "111")
+            .header(api::HEADER_X_WALLET_PUBKEY, "11111111111111111111111111111111")
+            .body(Body::empty()).unwrap();
+        let response = ServiceExt::<Request<Body>>::ready(&mut app)
+            .await.unwrap().call(request).await.unwrap();
+        assert_eq!(response.status(), StatusCode::OK, "gate disabled — valid wallet header should yield 200");
+
+        // Garbage wallet pubkey header → 200 (ignored when gate is off, NOT validated)
+        let request = Request::builder()
+            .uri("/api/meditation?duration=60&lang=en")
+            .header(api::HEADER_X_API_KEY, "111")
+            .header(api::HEADER_X_APP_VERSION, "111")
+            .header(api::HEADER_X_WALLET_PUBKEY, "not-a-valid-pubkey")
+            .body(Body::empty()).unwrap();
+        let response = ServiceExt::<Request<Body>>::ready(&mut app)
+            .await.unwrap().call(request).await.unwrap();
+        assert_eq!(response.status(), StatusCode::OK, "gate disabled — invalid wallet pubkey should still yield 200");
+    }
+
     #[tokio::test]
     async fn api_health_request() {
         logger::configure_logger();

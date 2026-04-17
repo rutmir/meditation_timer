@@ -19,10 +19,9 @@ impl ScriptItem {
     }
 
     pub fn get_tts_speech_markup(&self) -> String {
-        let ssml = self.instructions
+        self.instructions
             .replace(".", ".<break time=\"4s\"/> ")
-            .replace(",", ",<break time=\"1100ms\"/> ");
-        format!("<speak>{}</speak>", ssml)
+            .replace(",", ",<break time=\"1100ms\"/> ")
     }
 
     pub fn to_script(&self) -> ScriptItem {

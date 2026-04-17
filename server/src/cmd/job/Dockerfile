@@ -3,10 +3,14 @@ FROM rust:1.87-alpine AS builder
 RUN apk update
 #RUN apk add --no-cache libc-dev openssl-dev build-base musl-dev pkgconfig 
 #RUN apk add --no-cache libc-dev libressl-dev build-base musl-dev pkgconfig
-RUN apk add --no-cache musl-dev libressl-dev
+RUN apk add --no-cache musl-dev gcc pkgconfig libressl-dev
 
 # Install musl target for static linking
 RUN rustup target add x86_64-unknown-linux-musl
+
+# Static link against Alpine's LibreSSL (used by reqwest native-tls)
+ENV OPENSSL_STATIC=1
+ENV OPENSSL_DIR=/usr
 
 WORKDIR /usr/src/app
 
