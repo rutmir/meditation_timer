@@ -1,6 +1,4 @@
-use std::sync::{Arc, atomic::{AtomicBool, Ordering}};
 use meditimer_core::{logger, infrastructure::job};
-
 
 #[tokio::main]
 async fn main() {
@@ -9,17 +7,6 @@ async fn main() {
         panic!("{}",err);
     }
 
-    let running = Arc::new(AtomicBool::new(true));
-    let r = running.clone();
-
-    ctrlc::set_handler(move || {
-        r.store(false, Ordering::SeqCst);
-    }).expect("Error setting Ctrl-C handler");
-
-    // let path = std::env::current_dir().unwrap();
-    // println!("The current directory is {}", path.display());
-
-    println!("Waiting for Ctrl-C...");
-    while running.load(Ordering::SeqCst) {}
-    println!("Got it! Exiting...");
+    tokio::signal::ctrl_c().await.expect("failed to listen for ctrl-c");
+    log::info!("shutting down");
 }

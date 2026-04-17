@@ -1,10 +1,9 @@
 [package]
 name = "meditimer-job"
-version = "0.3.2"
+version = "0.3.3"
 edition = "2021"
 
 [dependencies]
-ctrlc = "3.4.7"
 log = "0.4.27"
 tokio =  { version = "1.45.1", features = ["full"] }
 tokio-cron-scheduler = { version = "0.14.0" }
