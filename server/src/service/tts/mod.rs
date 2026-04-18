@@ -61,8 +61,10 @@ pub async fn convert_text_to_speach(source: &ScriptItem, language: Language) -> 
 
     let status = response.status();
     if !status.is_success() {
-        let body = response.text().await.unwrap_or_default();
-        log::error!("--> ERR (2) Azure TTS HTTP {}: {}", status, body);
+        let headers = response.headers().clone();
+        let body = response.bytes().await.unwrap_or_default();
+        log::error!("--> ERR (2) Azure TTS HTTP {} headers={:?} body_len={} body={:?}",
+            status, headers, body.len(), String::from_utf8_lossy(&body));
         return (false, None);
     }
 
